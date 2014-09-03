@@ -58,7 +58,7 @@ NSURL *url= [NSURL URLWithString:@"http://arcane-ridge-6454.herokuapp.com/charge
 ```
 * Or in Android:
 ```java
-String data = “{your data}”;
+String data = "your data";
 String response;
 
 URL url = new URL("http://arcane-ridge-6454.herokuapp.com/charge.php");
