@@ -58,7 +58,7 @@ NSURL *url= [NSURL URLWithString:@"http://arcane-ridge-6454.herokuapp.com/charge
 ```
 * Or in Android:
 ```java
-String data = "your data";
+String data = "simplifyToken=abcdef1234567890“;
 String response;
 
 URL url = new URL("http://arcane-ridge-6454.herokuapp.com/charge.php");
@@ -66,6 +66,7 @@ HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 try {
     urlConnection.setDoOutput(true);
     urlConnection.setChunkedStreamingMode(0);
+    urlConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
 
     OutputStream out = new BufferedOutputStream(urlConnection.getOutputStream());
     out.write(data.getBytes("UTF-8"));
