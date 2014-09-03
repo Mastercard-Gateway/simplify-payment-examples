@@ -56,5 +56,37 @@ NSURL *url= [NSURL URLWithString:@"http://arcane-ridge-6454.herokuapp.com/charge
      NSString *string = [[NSString alloc] initWithData:responseData encoding:NSASCIIStringEncoding];
      NSLog(@"responseData: %@", string);
 ```
+* Or in Android:
+```java
+String data = “{your data}”;
+String response;
+
+URL url = new URL("http://arcane-ridge-6454.herokuapp.com/charge.php");
+HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+try {
+    urlConnection.setDoOutput(true);
+    urlConnection.setChunkedStreamingMode(0);
+
+    OutputStream out = new BufferedOutputStream(urlConnection.getOutputStream());
+    out.write(data.getBytes("UTF-8"));
+    out.close();
+
+    urlConnection.connect();
+
+    InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+    StringBuilder sb = new StringBuilder();
+    BufferedReader rd = new BufferedReader(new InputStreamReader(is));
+    String line = "";
+    while ((line = rd.readLine()) != null) {
+        sb.append(line);
+    }
+    in.close();
+
+    response = sb.toString();
+}
+finally {
+    urlConnection.disconnect();
+}
+```
 And you are done!
 
